@@ -1,9 +1,9 @@
+from pymongo import MongoClient
 from flask import Flask
-from flask_pymongo import PyMongo
 
 
 application = Flask(__name__)
-mongo = PyMongo(application, uri='mongodb://localhost:27017/herberryDB')
+mongo = MongoClient('mongodb://localhost:27017/herberryDB')
 
 
 import herberry.routes
