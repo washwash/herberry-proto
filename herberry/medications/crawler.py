@@ -3,10 +3,12 @@ import string
 from csv import DictReader
 from itertools import chain
 
+import os
 import scrapy
 from scrapy.crawler import CrawlerProcess
 
 from herberry.medications.models import Medication
+
 
 logging.basicConfig(
     filename='harvest_medications.log',
@@ -59,6 +61,7 @@ class DrugsComHarvestService:
             reader = DictReader(f)
             for record in reader:
                 Medication.save(record)
+        os.remove(self.data_url)
 
 
 HARVEST_SERVICES = {
